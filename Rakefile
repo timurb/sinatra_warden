@@ -19,6 +19,7 @@ begin
       gem.add_dependency(d.name, d.version)
     end
     
+    gem.has_rdoc = false
     gem.executables = nil
   end
   Jeweler::GemcutterTasks.new
