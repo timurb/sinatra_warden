@@ -43,7 +43,7 @@ module Sinatra
       app.set :sessions, true
 
       app.set :auth_failure_path, '/'
-      app.set :auth_success_path, '/'
+      app.set :auth_success_path, nil
 
       app.set :auth_error_message,   "Could not log you in."
       app.set :auth_success_message, "You have logged in successfully."
@@ -82,7 +82,7 @@ module Sinatra
       app.post '/login/?' do
         env['warden'].authenticate!
         flash[:success] = options.auth_success_message if defined?(Rack::Flash)
-        redirect options.auth_success_path
+        redirect ( options.auth_success_path || back )
       end
 
       app.get '/logout/?' do
